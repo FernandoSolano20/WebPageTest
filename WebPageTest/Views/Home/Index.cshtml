@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<label>Test location</label>
+<select id="location">
+    <optgroup label="Android Devices - Dulles, VA"><option value="Mobile_Dulles_MotoG4">Moto G (gen 4)</option><option value="Mobile_Dulles_MotoG">Moto G (gen 1)</option><option value="Mobile_Dulles_Nexus5">Nexus 5</option><option value="Mobile_Dulles_MotoE">Moto E (gen 1)</option><option value="Mobile_Dulles_OnePlus5">OnePlus 5</option><option value="Mobile_Dulles_Nexus7">Nexus 7 (Portrait Mode)</option></optgroup>
+    <optgroup label="Apple Devices - Dulles, VA"><option value="Mobile_Dulles_iPhone8">iPhone 8 (iOS 12)</option><option value="Mobile_Dulles_iPhone7plus">iPhone 7+ (iOS 12)</option><option value="Mobile_Dulles_iPhone6s">iPhone 6s (iOS 12)</option><option value="Mobile_Dulles_iPhone6">iPhone 6 (iOS 12)</option><option value="Mobile_Dulles_iPhone5c">iPhone 5c (iOS 10.3)</option><option value="Mobile_Dulles_iPad">iPad 2017 (iOS 12)</option><option value="Mobile_Dulles_iPadMini2">iPad Mini 2 (iOS 12)</option></optgroup>
+    <optgroup label="North America"><option value="Dulles_VA">Dulles, VA USA (Desktop, Android, iOS)</option><option value="Dulles_Thinkpad_VA">Dulles, VA - Thinkpad T430 (Chrome,Firefox,Edge,IE 11)</option><option value="Dulles_Aspire17_VA">Dulles, VA - Asus Aspire i3 2017 (Chrome,Firefox,Edge,IE 11)</option><option value="Dulles_Pi3_VA">Dulles, VA - Raspberry Pi 3 B (Chromium,Firefox)</option><option value="Dulles_Pi4_VA">Dulles, VA - Raspberry Pi 4 (Chromium,Firefox)</option><option value="ec2-us-east-1-akamai">Virginia - EC2 (Chrome,Firefox)</option><option value="Clifton_NJ">Clifton, NJ (Chrome,Firefox,Opera)</option><option value="Orlando_FL">Orlando, FL (Chrome,Firefox,Opera)</option><option value="Chicago_IL_US">Chicago, Illinois (Chrome,Firefox,Opera)</option><option value="Dallas_TX_US">Dallas, TX (Chrome,Firefox,Opera)</option><option value="Lincoln_NB">Lincoln, Nebraska (Chrome, Firefox, Opera)</option><option value="Denver_CO">Denver, Colorado (Chrome, Firefox)</option><option value="California_Loc">California - ScientiaMobile (Chrome,Firefox,IE 11)</option><option value="SanFrancisco_CA">San Francisco, CA (Chrome,Firefox,Opera)</option><option value="ec2-us-west-1-akamai">California - EC2 (Chrome,Firefox)</option><option value="LosAngeles_CA">Los Angeles, CA USA (Chrome, Firefox,Opera)</option><option value="Toronto_Canada">Toronto, Canada (Chrome,Firefox,Opera)</option></optgroup>
+    <optgroup label="South America"><option value="Argentina_Loc">Buenos Aires, Argentina (Firefox,Chrome)</option><option value="Argentina2_Loc">Buenos Aires, Argentina - Nodus (Firefox,Chrome)</option><option value="SaoPaulo_BR_Loc">Sao Paulo, Brazil (Chrome, Firefox)</option><option value="ec2-sa-east-1-akamai">Sao Paulo, Brazil - EC2 (Chrome,Firefox)</option><option value="MinasGerais_BR_Loc">Uberlândia, Minas Gerais, Brazil (Chrome, Firefox, Opera)</option></optgroup>
+    <optgroup label="Europe"><option value="ec2-eu-west-1-akamai">Ireland - EC2 (Chrome,Firefox)</option><option value="ec2-eu-west-1-windows-akamai">Ireland - EC2 Windows (IE 11,Chrome,Firefox)</option><option value="Nottingham_UK">Nottingham, East Midlands, UK (Chrome, Firefox, Opera)</option><option value="Maidenhead_UK">Maidenhead, UK (Chrome,Firefox,Opera)</option><option value="London_EC2_Loc">London, UK - EC2 (Chrome,Firefox)</option><option value="London_UK">London, UK (Chrome,Firefox)</option><option value="London_UK2">London, UK - Atlantic.net (Chrome,Firefox,Opera)</option><option value="Spain_Loc">La Rioja, Spain (Chrome,Firefox,Opera)</option><option value="ec2-eu-west-3-akamai">Paris - EC2 (Chrome,Firefox)</option><option value="Paris_FR">Paris, France (Chrome,Firefox,IE 11)</option><option value="Strasburg_FR_Loc">Strasburg, France (Chrome,Firefox,Opera)</option><option value="Brussels_BE">Brussels, BE (Chrome,Firefox,Opera)</option><option value="Amsterdam_MeasureWorks">Amsterdam, NL - MeasureWorks (Chrome,Firefox,Opera)</option><option value="Amsterdam_IISpeed_Loc">Amsterdam, NL - IISpeed (Chrome,Firefox,Opera)</option><option value="Zurich_CH">Zurich, Switzerland (Chrome,Firefox,Opera)</option><option value="Frankfurt_DE_Ruxit">Frankfurt, Germany - Dynatrace (Chrome,Firefox)</option><option value="ec2-eu-central-1-akamai">Frankfurt, Germany - EC2 (Chrome,Firefox)</option><option value="Falkenstein_DE">Falkenstein, Germany - (Chrome,Firefox)</option><option value="Prague_CZ">Prague, Czech Republic (Chrome,Canary,Firefox)</option><option value="Poland_Loc">Warsaw, Poland (Chrome,Firefox,Opera)</option><option value="Poland2_Loc">Warsaw, Poland - IDG (Chrome,Firefox,Opera)</option><option value="Stockholm2_SE">Stockholm, Sweden (Chrome,Firefox,Opera)</option></optgroup>
+    <optgroup label="Africa"><option value="Mauritius_Loc">Rose Hill, Mauritius (Chrome,Firefox,Opera)</option></optgroup>
+    <optgroup label="Middle East"><option value="Istanbul_loc">Istanbul, Turkey (Chrome, Firefox)</option><option value="Istanbul2_loc">Istanbul, Turkey - Cloudeos (Chrome,Firefox,Opera)</option><option value="Ankara_loc">Ankara, Turkey (Chrome, Firefox)</option><option value="Israel_Loc">Israel (Chrome,Firefox,Opera)</option><option value="Dubai_loc">Dubai, UAE (Chrome, Firefox)</option></optgroup>
+    <optgroup label="Asia"><option value="ap-south-1-akamai">Mumbai, India - EC2 (Chrome,Firefox)</option><option value="ec2-ap-southeast-1-akamai">Singapore - EC2 (Chrome,Firefox)</option><option value="Vietnam_Loc">Vietnam (Chrome,Firefox,Opera)</option><option value="Indonesia_Loc">Jakarta, Indonesia (Chrome,Firefox,Opera)</option><option value="Beijing2_CN">Beijing, China (Firefox)</option><option value="ec2-ap-northeast-2-akamai">Seoul, Korea - EC2 (Chrome,Firefox)</option><option value="Seoul_Korea_Automattic">Seoul, Korea EC2 (Firefox)</option><option value="Seoul_Korea_Naver">Seoul, Korea (8,11,Chrome,Canary,Firefox)</option><option value="ec2-ap-northeast-1-akamai">Tokyo, Japan - EC2 (Chrome,Firefox)</option></optgroup>
+    <optgroup label="Oceania"><option value="Sydney_AU">Sydney - Bulletproof Networks (Chrome,Firefox,Opera)</option><option value="Sydney2_AU">Sydney - Servers Australia (IE 10,Chrome,Canary,Firefox)</option><option value="Sydney3_AU">Sydney - Strategy Lions (Chrome,Firefox,Opera)</option><option value="Sydney4_AU">Sydney - Dexecure (Chrome,Firefox)</option><option value="ec2-ap-southeast-2-akamai">Sydney, Australia - EC2 (Chrome,Firefox)</option></optgroup>
+</select>
+
+<label>Browser</label>
+<select id="browser">
+</select>
+
+<label>Connection</label>
+<select id="connection">
+    <option value=".Cable">Cable (5/1 Mbps 28ms RTT)</option>
+    <option value=".DSL">DSL (1.5 Mbps/384 Kbps 50ms RTT)</option>
+    <option value=".3GSlow">3G Slow (400 Kbps, 400ms RTT)</option>
+    <option value=".3G">3G (1.6 Mbps/768 Kbps 300ms RTT)</option>
+    <option value=".3GFast">3G Fast (1.6 Mbps/768 Kbps 150ms RTT)</option>
+    <option value=".4G">4G (9 Mbps, 170ms RTT)</option>
+    <option value=".LTE">LTE (12 Mbps/12 Mbps 70ms RTT)</option>
+    <option value=".Edge">Mobile Edge (240 Kbps/200 Kbps 840ms RTT)</option>
+    <option value=".2G">2G (280 Kbps/256 Kbps 800ms RTT)</option>
+    <option value=".Dial">56K Dial-Up (49/30 Kbps 120ms RTT)</option>
+    <option value=".FIOS">FIOS (20/5 Mbps 4ms RTT)</option>
+    <option value=".Native">Native Connection (No Traffic Shaping)</option>
+    <option value=".custom" selected>Custom</option>
+</select>
+
+<label>Download bandwidth</label>
+<input type="number" value="5000" id="bwDown">
+
+<label>Upload bandwidth</label>
+<input type="number" value="1000" id="bwUp">
+
+<label>Latency</label>
+<input type="number" value="28" id="latency">
+
+<label>Packet Loss</label>
+<input type="number" value="0" id="packetLoss">
+
+<label>Number of Tests to Run</label>
+<input type="number" value="9" id="runs">
+
+<label>Repeat View</label>
+<input type="radio" name="repeat" value="0"> First View and Repeat View
+<input type="radio" name="repeat" value="1" checked> First View Only
+
+<label>Number of URLs</label>
+<input type="number" id="numberUrls">
+
+<div>
+    <textarea id="urls"></textarea>
+</div>
+
+<button id="generate">Generate Report</button>
+
+@section scripts{
+    <script type="text/javascript" src="../../Scripts/JavaScript.js"></script>
+}
+<div id="tables">
+    <table id="table-summary">
+        <thead>
+        <tr>
+            <th>Page</th>
+            <th>TTFB</th>
+            <th>Time to Start Render</th>
+            <th>SpeedIndex</th>
+            <th>DOM Content Loaded</th>
+            <th>Load Time</th>
+            <th>Time To Interactive</th>
+            <th>Fully Loaded</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
