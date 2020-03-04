@@ -137,58 +137,90 @@ function drawTable(data) {
         var thead = document.createElement("thead");
         table.appendChild(thead);
 
-        var trHead1 = document.createElement("tr");
-        thead.appendChild(trHead1);
-
-        var th = document.createElement("th");
-        th.setAttribute("colspan", "7");
-        th.innerText = url;
-        trHead1.appendChild(th);
-
         var trHead = document.createElement("tr");
         thead.appendChild(trHead);
 
-        var thTtfb = document.createElement("th");
-        thTtfb.innerText = "TTFB";
-        trHead.appendChild(thTtfb);
+        var th = document.createElement("th");
+        th.setAttribute("colspan", "15");
+        th.innerText = url;
+        trHead.appendChild(th);
 
-        var thRender = document.createElement("th");
-        thRender.innerText = "Time to Start Render";
-        trHead.appendChild(thRender);
-
-        var thSpeedIndex = document.createElement("th");
-        thSpeedIndex.innerText = "SpeedIndex";
-        trHead.appendChild(thSpeedIndex);
-
-        var thDOM = document.createElement("th");
-        thDOM.innerText = "DOM Content Loaded";
-        trHead.appendChild(thDOM);
-
-        var thLoad = document.createElement("th");
-        thLoad.innerText = "Load Time";
-        trHead.appendChild(thLoad);
+        var trHead1 = document.createElement("tr");
+        thead.appendChild(trHead1);
 
         var thTti = document.createElement("th");
         thTti.innerText = "Time to Interactive";
-        trHead.appendChild(thTti);
+        trHead1.appendChild(thTti);
+
+        var thCSSBytes = document.createElement("th");
+        thCSSBytes.innerText = "CSS Bytes";
+        trHead1.appendChild(thCSSBytes);
+
+        var thJSBytes = document.createElement("th");
+        thJSBytes.innerText = "JS Bytes";
+        trHead1.appendChild(thJSBytes);
+
+        var thImageBytes = document.createElement("th");
+        thImageBytes.innerText = "Image Bytes";
+        trHead1.appendChild(thImageBytes);
 
         var thFully = document.createElement("th");
         thFully.innerText = "Fully Loaded";
-        trHead.appendChild(thFully);
+        trHead1.appendChild(thFully);
+
+        var thDOM = document.createElement("th");
+        thDOM.innerText = "DOM Content Loaded";
+        trHead1.appendChild(thDOM);
+
+        var thDOMElements = document.createElement("th");
+        thDOMElements.innerText = "DOM Elements";
+        trHead1.appendChild(thDOMElements);
+
+        var thLCP= document.createElement("th");
+        thLCP.innerText = "Largest Contentful Paint";
+        trHead1.appendChild(thLCP);
+
+        var thRender = document.createElement("th");
+        thRender.innerText = "Time to Start Render";
+        trHead1.appendChild(thRender);
+
+        var thFCP = document.createElement("th");
+        thFCP.innerText = "First Contenful Paint";
+        trHead1.appendChild(thFCP);
+
+
+        var thTtfb = document.createElement("th");
+        thTtfb.innerText = "TTFB";
+        trHead1.appendChild(thTtfb);
+
+        var thLoad = document.createElement("th");
+        thLoad.innerText = "Load Time";
+        trHead1.appendChild(thLoad);
+
 
         var tbody = document.createElement("tbody");
         table.appendChild(tbody);
 
+        //TODO add elements
+
         urlPage = table;
 
         pages[url] = {};
-        pages[url]["TTFB"] = [];
-        pages[url]["Render"] = [];
-        pages[url]["SpeedIndex"] = [];
-        pages[url]["DOMContentLoaded"] = [];
-        pages[url]["LoadTime"] = [];
         pages[url]["TTI"] = [];
+        pages[url]["CSSBytes"] = [];
+        pages[url]["JSBytes"] = [];
+        pages[url]["ImageBytes"] = [];
         pages[url]["FullyLoaded"] = [];
+        pages[url]["DOMContentLoaded"] = [];
+        pages[url]["DomElements"] = [];
+        pages[url]["LCP"] = [];
+        pages[url]["Render"] = [];
+        pages[url]["FCP"] = [];
+        pages[url]["TTFB"] = [];
+        pages[url]["LoadTime"] = [];
+        
+
+        //TODO para la mediana
     }
     var tableBody = urlPage.querySelector("tbody");
     var runs = data.data.runs;
@@ -197,43 +229,29 @@ function drawTable(data) {
         var tr = document.createElement("tr");
         tableBody.appendChild(tr);
 
-        var tdTtfb = document.createElement("td");
-        var ttfb = runs[run].firstView.TTFB ? runs[run].firstView.TTFB : 0;
-        tdTtfb.innerText = ttfb;
-        pages[url]["TTFB"].push(ttfb);
-        tr.appendChild(tdTtfb);
-
-        var tdRender = document.createElement("td");
-        var render = runs[run].firstView.render ? runs[run].firstView.render : 0;
-        tdRender.innerText = render;
-        pages[url]["Render"].push(render);
-        tr.appendChild(tdRender);
-
-        var tdSpeedIndex = document.createElement("td");
-        var speedIndex = runs[run].firstView.SpeedIndex ? runs[run].firstView.SpeedIndex : 0;
-        tdSpeedIndex.innerText = speedIndex;
-        pages[url]["SpeedIndex"].push(speedIndex);
-        tr.appendChild(tdSpeedIndex);
-
-        var tdDOMContentLoaded = document.createElement("td");
-        var domContentLoaded = runs[run].firstView.domContentLoadedEventEnd
-            ? runs[run].firstView.domContentLoadedEventEnd
-            : 0; 
-        tdDOMContentLoaded.innerText = domContentLoaded;
-        pages[url]["DOMContentLoaded"].push(domContentLoaded);
-        tr.appendChild(tdDOMContentLoaded);
-
-        var tdLoadTime = document.createElement("td");
-        var loadTime = runs[run].firstView.loadTime ? runs[run].firstView.loadTime : 0;
-        tdLoadTime.innerText = loadTime;
-        pages[url]["LoadTime"].push(loadTime);
-        tr.appendChild(tdLoadTime);
-
         var tdTTI = document.createElement("td");
         var tti = runs[run].firstView.TTIMeasurementEnd ? runs[run].firstView.TTIMeasurementEnd : 0;
         tdTTI.innerText = tti;
         pages[url]["TTI"].push(tti);
         tr.appendChild(tdTTI);
+
+        var tdCSSBytes = document.createElement("td");
+        var cssBytes = runs[run].firstView.breakdown.css.bytes ? runs[run].firstView.breakdown.css.bytes : 0;
+        tdCSSBytes.innerText = cssBytes;
+        pages[url]["CSSBytes"].push(cssBytes);
+        tr.appendChild(tdCSSBytes);
+
+        var tdJSBytes = document.createElement("td");
+        var jsBytes = runs[run].firstView.breakdown.js.bytes ? runs[run].firstView.breakdown.js.bytes : 0;
+        tdJSBytes.innerText = jsBytes;
+        pages[url]["JSBytes"].push(jsBytes);
+        tr.appendChild(tdJSBytes);
+
+        var tdImageBytes = document.createElement("td");
+        var imageBytes = runs[run].firstView.breakdown.image.bytes ? runs[run].firstView.breakdown.image.bytes : 0;
+        tdImageBytes.innerText = imageBytes;
+        pages[url]["ImageBytes"].push(imageBytes);
+        tr.appendChild(tdImageBytes);
 
         var tdFullyLoaded = document.createElement("td");
         var fullyLoaded = runs[run].firstView.fullyLoaded ? runs[run].firstView.fullyLoaded : 0;
@@ -241,6 +259,55 @@ function drawTable(data) {
         pages[url]["FullyLoaded"].push(fullyLoaded);
         tr.appendChild(tdFullyLoaded);
 
+        var tdDOMContentLoaded = document.createElement("td");
+        var domContentLoaded = runs[run].firstView.domContentLoadedEventEnd
+            ? runs[run].firstView.domContentLoadedEventEnd
+            : 0;
+        tdDOMContentLoaded.innerText = domContentLoaded;
+        pages[url]["DOMContentLoaded"].push(domContentLoaded);
+        tr.appendChild(tdDOMContentLoaded);
+
+        var tdDomElements = document.createElement("td");
+        var domElements = runs[run].firstView.domElements ? runs[run].firstView.domElements : 0;
+        tdDomElements.innerText = domElements;
+        pages[url]["DomElements"].push(domElements);
+        tr.appendChild(tdDomElements);
+
+        var tdLCP = document.createElement("td");
+        var lcp = runs[run].firstView.chromeUserTiming.LargestContentfulPaint
+            ? runs[run].firstView.chromeUserTiming.LargestContentfulPaint
+            : 0;
+        tdLCP.innerText = lcp;
+        pages[url]["LCP"].push(lcp);
+        tr.appendChild(tdLCP);
+
+        var tdRender = document.createElement("td");
+        var render = runs[run].firstView.render ? runs[run].firstView.render : 0;
+        tdRender.innerText = render;
+        pages[url]["Render"].push(render);
+        tr.appendChild(tdRender);
+
+        var tdFCP = document.createElement("td");
+        var fcp = runs[run].firstView.firstContentfulPaint ? runs[run].firstView.firstContentfulPaint : 0;
+        tdFCP.innerText = fcp;
+        pages[url]["FCP"].push(fcp);
+        tr.appendChild(tdFCP);
+
+        var tdTtfb = document.createElement("td");
+        var ttfb = runs[run].firstView.TTFB ? runs[run].firstView.TTFB : 0;
+        tdTtfb.innerText = ttfb;
+        pages[url]["TTFB"].push(ttfb);
+        tr.appendChild(tdTtfb);
+
+        var tdLoadTime = document.createElement("td");
+        var loadTime = runs[run].firstView.loadTime ? runs[run].firstView.loadTime : 0;
+        tdLoadTime.innerText = loadTime;
+        pages[url]["LoadTime"].push(loadTime);
+        tr.appendChild(tdLoadTime);
+
+
+        //TODO add metrics
+        
         if (numberRuns.value * 3 == pages[url].TTFB.length) {
             drawSummaryTable(url,pages[url]);
         }
@@ -259,6 +326,11 @@ function drawSummaryTable(url, page) {
     for (var metrics in page) {
         var metric = page[metrics];
         var tdMetric = document.createElement("td");
+        if (metrics != "CSSBytes" && metrics != "JSBytes" && metrics != "ImageBytes" && metrics != "DomElements") {
+            for (var i = 0; i < metric.length; i++) {
+                metric[i] /= 1000;
+            }
+        }
         tdMetric.innerText = median(metric);
         tr.appendChild(tdMetric);
     }
@@ -319,9 +391,6 @@ function getNamePage(url) {
 }
 
 var median = function (arr) {
-    for (var i = 0; i < arr.length; i++) {
-        arr[i] /= 1000;
-    }
     var mid = Math.floor(arr.length / 2);
     var nums = [...arr].sort((a, b) => a - b);
     return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
