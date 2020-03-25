@@ -55,44 +55,62 @@ function changeConnection() {
 function makeRequestToWpt() {
     var optionUrls = urlsTextArea.value.split("\n");
     var reapeatView = document.querySelector("[name='repeat']:checked");
-    for (var i = 0; i < optionUrls.length; i++) {
-        for (var j = 0; j < 3; j++) {
-            var url = "https://www.webpagetest.org/runtest.php?url=" +
-                optionUrls[i] +
-                "&block=ast.js" +
-                "&runs=" +
-                numberRuns.value +
-                "&fvonly=" +
-                reapeatView.value +
-                "&location=" +
-                connectionSelect.value +
-                "&bwDown=" +
-                bandwidthDown.value +
-                "&bwUp=" +
-                bandwidthUp.value +
-                "&latency=" +
-                latency.value +
-                "&plr=" +
-                packetLoss.value +
-                "&timeline=1&clearcerts=1&f=json&k=" + apiKeys[validApiKey(Number(numberRuns.value))]+"";
-            var xhr = new XMLHttpRequest();
+    var isFromWPT = document.querySelector("[name='result']:checked").value === "1";
 
-            xhr.addEventListener("readystatechange", function webPageTestResponseReady() {
-                var data = null;
-                if (this.readyState === this.DONE) {
-                    data = JSON.parse(this.response);
-                    if (data.statusCode === 200) {
-                        urlsFromWPT.push(data.data.jsonUrl);
-                        getMetricsFromWpt(data.data.jsonUrl);
-                    } else {
-                        badUrl.push([data.statusText, data.statusCode]);
-                    }
-                }
-            });
-            xhr.open("GET", url, true);
-            xhr.send();
+    //if the URLs are not from webpagetest
+    if (!isFromWPT) {
+        for (var i = 0; i < optionUrls.length; i++) {
+            for (var j = 0; j < 3; j++) {
+                var url = "https://www.webpagetest.org/runtest.php?url=" +
+                    optionUrls[i] +
+                    "&block=ast.js" +
+                    "&runs=" +
+                    numberRuns.value +
+                    "&fvonly=" +
+                    reapeatView.value +
+                    "&location=" +
+                    connectionSelect.value +
+                    "&bwDown=" +
+                    bandwidthDown.value +
+                    "&bwUp=" +
+                    bandwidthUp.value +
+                    "&latency=" +
+                    latency.value +
+                    "&plr=" +
+                    packetLoss.value +
+                    "&timeline=1&clearcerts=1&f=json&k=" +
+                    apiKeys[validApiKey(Number(numberRuns.value))] +
+                    "";
+                var xhr = new XMLHttpRequest();
+
+                xhr.addEventListener("readystatechange",
+                    function webPageTestResponseReady() {
+                        var data = null;
+                        if (this.readyState === this.DONE) {
+                            data = JSON.parse(this.response);
+                            if (data.statusCode === 200) {
+                                urlsFromWPT.push(data.data.jsonUrl);
+                                getMetricsFromWpt(data.data.jsonUrl);
+                            } else {
+                                badUrl.push([data.statusText, data.statusCode]);
+                            }
+                        }
+                    });
+                xhr.open("GET", url, true);
+                xhr.send();
+            }
         }
+    } else {
+        var urls = optionUrls.map(url => {
+            return getWptApiUrlFromResult(url);
+        });
+
+        urls.forEach(url => {
+            getMetricsFromWpt(url);
+        });
     }
+
+    
 }
 
 function validApiKey(runs) {
@@ -395,6 +413,18 @@ var median = function (arr) {
     var nums = [...arr].sort((a, b) => a - b);
     return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
 };
+
+function removeTrailingSlash(str) {
+    if (str.substr(-1) === '/') {
+        return str.substr(0, str.length - 1);
+    }
+    return str;
+}
+
+function getWptApiUrlFromResult(url) {
+    url = removeTrailingSlash(url);
+    return url.replace('https://webpagetest.org/result/', 'https://www.webpagetest.org/jsonResult.php?test=');
+}
 
 btnGenerateReport.addEventListener("click",makeRequestToWpt);
 locationSelect.addEventListener("change", showBrowserLocations);

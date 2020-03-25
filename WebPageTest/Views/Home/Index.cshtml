@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
 <label>Test location</label>
 <select id="location">
     <optgroup label="Android Devices - Dulles, VA"><option value="Mobile_Dulles_MotoG4">Moto G (gen 4)</option><option value="Mobile_Dulles_MotoG">Moto G (gen 1)</option><option value="Mobile_Dulles_Nexus5">Nexus 5</option><option value="Mobile_Dulles_MotoE">Moto E (gen 1)</option><option value="Mobile_Dulles_OnePlus5">OnePlus 5</option><option value="Mobile_Dulles_Nexus7">Nexus 7 (Portrait Mode)</option></optgroup>
@@ -35,27 +36,40 @@
     <option value=".custom" selected>Custom</option>
 </select>
 
+<br />
+
 <label>Download bandwidth</label>
 <input type="number" value="5000" id="bwDown">
 
+<br />
 <label>Upload bandwidth</label>
 <input type="number" value="1000" id="bwUp">
 
+<br />
 <label>Latency</label>
 <input type="number" value="28" id="latency">
 
+<br />
 <label>Packet Loss</label>
 <input type="number" value="0" id="packetLoss">
 
+<br />
 <label>Number of Tests to Run</label>
 <input type="number" value="9" id="runs">
 
+<br />
 <label>Repeat View</label>
 <input type="radio" name="repeat" value="0"> First View and Repeat View
 <input type="radio" name="repeat" value="1" checked> First View Only
 
+<br />
 <label>Number of URLs</label>
 <input type="number" id="numberUrls">
+
+<br />
+<label>Are the URLs from Webpagetest?</label>
+<input type="radio" name="result" value="0" checked> No
+<input type="radio" name="result" value="1"> Yes
 
 <div>
     <textarea id="urls"></textarea>
@@ -69,22 +83,57 @@
 <div id="tables">
     <table id="table-summary">
         <thead>
-            <tr>
-                <th>Page</th>
-                <th>TTI</th>
-                <th>CSS Bytes</th>
-                <th>JS Bytes</th>
-                <th>Image Bytes</th>
-                <th>Fully Loaded</th>
-                <th>DOM Content Loaded</th>
-                <th>DOM Elements</th>
-                <th>LCP</th>
-                <th>Start Render</th>
-                <th>FCP</th>
-                <th>TTFB</th>
-                <th>Load Time</th>
-            </tr>
+        <tr>
+            <th colspan="15">Summary</th>
+        </tr>  
+        <tr>
+            <th>Page</th>
+            <th>TTI</th>
+            <th>CSS Bytes</th>
+            <th>JS Bytes</th>
+            <th>Image Bytes</th>
+            <th>Fully Loaded</th>
+            <th>DOM Content Loaded</th>
+            <th>DOM Elements</th>
+            <th>LCP</th>
+            <th>Start Render</th>
+            <th>FCP</th>
+            <th>TTFB</th>
+            <th>Load Time</th>
+        </tr>
         </thead>
         <tbody></tbody>
     </table>
 </div>
+
+
+<style>
+    td {
+        padding: 0 6px;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    table, th, td {
+        border: 1px solid black; 
+        border-collapse: collapse;
+    }
+
+    th{
+        padding: 0 6px;
+        font-size: 12px;
+    }
+
+    table {
+        margin: 25px 0;
+    }
+
+    thead > tr:nth-child(1) > th {
+        font-size: 20px;
+    }
+
+    textarea {
+        width: 600px !important;
+        max-width: 600px !important;
+    }
+</style>
