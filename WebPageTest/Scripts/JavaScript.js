@@ -464,7 +464,13 @@ function removeTrailingSlash(str) {
 
 function getWptApiUrlFromResult(url) {
     url = removeTrailingSlash(url);
-    return url.replace('https://webpagetest.org/result/', 'https://www.webpagetest.org/jsonResult.php?test=');
+    var host = "";
+    if (url.indexOf("https://webpagetest.org/result/") > -1) {
+        host = "https://webpagetest.org/result/";
+    } else {
+        host = "https://www.webpagetest.org/result/";
+    }
+    return url.replace(host, 'https://www.webpagetest.org/jsonResult.php?test=');
 }
 
 btnGenerateReport.addEventListener("click",makeRequestToWpt);
