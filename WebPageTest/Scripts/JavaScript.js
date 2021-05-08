@@ -441,10 +441,7 @@ function getNamePage(url) {
     else if (url.indexOf("/basiccommunity/") >= 0) {
         return "Basic Community";
     }
-    else if (url.indexOf(".newhomesource.com/") >= 0) {
-        console.log("es el homepage!", url);
-        return "Home Page";
-    }else {
+    else {
         return url;
     }
 }
@@ -470,7 +467,7 @@ function getWptApiUrlFromResult(url) {
     } else {
         host = "https://www.webpagetest.org/result/";
     }
-    return url.replace(host, 'https://www.webpagetest.org/jsonResult.php?test=');
+    return "/home/GetData?url=" + url.replace(host, 'https://www.webpagetest.org/jsonResult.php?test=');
 }
 
 btnGenerateReport.addEventListener("click",makeRequestToWpt);
