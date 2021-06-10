@@ -467,7 +467,7 @@ function getWptApiUrlFromResult(url) {
     } else {
         host = "https://www.webpagetest.org/result/";
     }
-    return "/home/GetData?url=" + url.replace(host, 'https://www.webpagetest.org/jsonResult.php?test=');
+    return url.replace(host, 'https://www.webpagetest.org/jsonResult.php?test=');
 }
 
 btnGenerateReport.addEventListener("click",makeRequestToWpt);
